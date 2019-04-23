@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Apr 23 19:43:58 2019
+
+@author: bruno
+"""
+
+import pandas as pd
+import numpy as np
+import os
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+path_banco = os.getenv("HOME") + '/Bancos_Dados/UFJF/Periodo_2019_1/SAD/'
+
+'''
+Posse de bola influencia no resultado final da partida:
+Banco: 'Match' Colunas: 'home_team_goal', 'away_team_goal', 'possession'
+
+Time que menos modifica seus jogadores tem melhor colocacao na tabela
+Banco: 'Match' Colunas: 'home_player[1..11]', 'match_api_id', 'session', 'home_team_api_id'\
+       'away_team_api_id', 'away_player[1..11]', 'home_team_goal', 'away_team_goal'
+
+Time que mais chuta ao gol influencia no resultado final da partida
+Banco: 'Match' Colunas: 'home_team_goal', 'away_team_goal', 'shoton', 'shotoff'
+
+'''
+
+
+#Bases
+
+#base_Country = pd.read_csv(path_banco + 'Country.csv')
+#base_League = pd.read_csv(path_banco + 'League.csv')
+base_Match = pd.read_csv(path_banco + 'Match.csv',low_memory = False)
+#base_Player = pd.read_csv(path_banco + 'Player.csv')
+#base_Player_Attributes = pd.read_csv(path_banco + 'Player_Attributes.csv')
+#base_Team= pd.read_csv(path_banco + 'Team.csv')
+#base_Team_Attributes= pd.read_csv(path_banco + 'Team_Attributes.csv')
+#base_sqlite_sequence= pd.read_csv(path_banco + 'sqlite_sequence.csv')
+
+base = base_Match.loc[:,['home_team_goal','away_team_goal','possession']]
+
+base1 = base_Match.loc[:,['possession']]
+for i in base1:
+    print(i)
+base1.head(3000)
+a = base1.iloc[2999,]
+
+vet = a.split('')
+print(a)
+
+sns.pairplot(base)
+plt.plot()
