@@ -47,8 +47,8 @@ for i in base1:
 base1.head(3000)
 a = base1.iloc[2999,]
 
-vet = a.split('')
+#vet = a.split('')
 print(a)
 
-sns.pairplot(base)
-plt.plot()
+#sns.pairplot(base)
+#plt.plot()
